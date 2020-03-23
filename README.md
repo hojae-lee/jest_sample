@@ -55,6 +55,7 @@ describe("IBSheet8 test", () => {
         }
 
         // 최초 시 __image_snapshots__ 폴더에 이미지가 생성되고, 두번째 테스트시 기존 이미지와 비교하여 다른 경우 오류가 발생한다.
+        // 오류가 생길 경우 __image_snapshots__/_diff_output_ 안에 서로의 이미지를 비교한 이미지가 생성된다.
         const png = await page.screenshot();
 
         try {
