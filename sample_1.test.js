@@ -2,6 +2,7 @@ const puppeteer = require("puppeteer"); // 브라우저를 열고 지지고 볶�
 const {toMatchImageSnapshot}  = require("jest-image-snapshot"); // 캡쳐 모듈
 expect.extend({toMatchImageSnapshot}); // 캡쳐모듈 연결
 
+// 테스트 파일에 많은 수의 테스트 함수가 작성되어 있는 경우 연관된 테스트 함수들끼리 그룹화.
 describe("IBSheet8 test", () => {
     test("IBSheet8 test start", async () => {
 
@@ -20,7 +21,7 @@ describe("IBSheet8 test", () => {
         // 브라우저 내에 새 탭을 생성
         const page = await browser.newPage();
         // 특정 URL로 이동 timeout을 ms로 설정해두면 해당 시간 안에 이동하지 못했을 시 오류 발생. 0으로 설정하면 무제한 기다림.
-        await page.goto("http://localhost:3002/html/main.html",{timeout:0});
+        await page.goto("http://localhost:3002/html/main.html", {timeout:0});
     
         await page.mouse.click(122, 192);
         await page.waitFor(500);
@@ -42,6 +43,7 @@ describe("IBSheet8 test", () => {
         // 객체 value 얻기
         let aValue = await page.$eval('#myTabs_contents-0', (input) => input.value);
     
+        // try, catch를 하지 않으면 오류 발생시 test가 중단됨.
         try {
             // 가져온 값과 원래 기대하는 값을 비교.
             expect(aValue).toEqual("전국이 대체로 흐리거나 구름많은 가운데 대기불안정으로 중부내륙은 아침과 오후 한때, 남부내륙은 오후 한때 소나기가 오는 곳이 있겠습니다.");
