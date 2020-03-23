@@ -24,7 +24,7 @@ describe("IBSheet8 test", () => {
         await page.goto("http://localhost:3002/html/main.html", {timeout: 0});
     
         await page.mouse.click(122, 192);
-        await page.waitFor(500);
+        await page.waitFor(500); // 0.5초 기다림.
         await page.mouse.click(91, 229);
         await page.waitFor(500);
         await page.mouse.click(757, 390);
@@ -46,11 +46,21 @@ describe("IBSheet8 test", () => {
         // try, catch를 하지 않으면 오류 발생시 test가 중단됨.
         try {
             // 가져온 값과 원래 기대하는 값을 비교.
-            expect(aValue).toEqual("전국이 대체로 흐리거나 구름많은 가운데 대기불안정으로 중부내륙은 아침과 오후 한때, 남부내륙은 오후 한때 소나기가 오는 곳이 있겠습니다.");
+            expect(aValue).toEqual("아무거나");
         } catch(e) {
             console.log("값이 서로 다릅니다.");
         }
-    
+
+        // 최초 시 __image_snapshots__ 폴더에 이미지가 생성되고, 두번째 테스트시 기존 이미지와 비교하여 다른 경우 오류가 발생한다.
+        const png = await page.screenshot();
+
+        try {
+            expect(png).toMatchImageSnapshot();
+            console.log("캡처 이미지 비교 성공");
+        } catch (e) {
+            console.log("캡쳐된 이미지를 비교하는 과정에서 오류가 발생하였습니다.");
+        }
+
         await browser.close();
     
     }, 30000); // 해당 테스트는 30초 내로 끝나야 정상이라는 의미. 시간을 넘어가면 에러 발생.
