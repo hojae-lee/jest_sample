@@ -1,5 +1,11 @@
 # jest_sample
 
+##### jest는 테스트 프레임워크입니다. 자바스크립트로 작성된 프로젝트에 테스트 자동화를 사용 할 때 사용할 수 있는 도구
+
+1. npm init
+2. npm i --save-dev jest puppeteer puppeteer-core jest-image-sanpshot
+3. package.json에 scripts에 jest: "jest" 또는 test: "jest" 로 설정
+
 ```js
 const puppeteer = require("puppeteer"); // 브라우저를 열고 지지고 볶는 모듈
 const {toMatchImageSnapshot}  = require("jest-image-snapshot"); // 캡쳐 모듈
