@@ -21,8 +21,7 @@ describe("IBSheet8 test", () => {
         // 브라우저 내에 새 탭을 생성
         const page = await browser.newPage();
         // 특정 URL로 이동 timeout을 ms로 설정해두면 해당 시간 안에 이동하지 못했을 시 오류 발생. 0으로 설정하면 무제한 기다림.
-        await page.goto("http://localhost:3002/html/main.html", {timeout: 0});
-    
+        await page.goto("http://localhost:3000/html/main.html", {timeout: 0});
         await page.mouse.click(122, 192);
         await page.waitFor(500); // 0.5초 기다림.
         await page.mouse.click(91, 229);
@@ -81,7 +80,7 @@ describe("IBSheet8 test", () => {
         });
     
         const page2 = await browser2.newPage();
-        await page2.goto("http://localhost:3002/html/main.html", {timeout: 0});
+        await page2.goto("http://localhost:3000/html/main.html", {timeout: 0});
 
         await page2.mouse.click(77, 327);
         await page2.waitFor(500);
