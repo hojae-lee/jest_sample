@@ -32,9 +32,7 @@ describe("IBSheet8 test", () => {
         // 브라우저 내에 특정 스크립트 구동하기
         await page.addScriptTag({ content: 
             `
-                sheet.getFirstRow().LinesData = "아무거나";
-                sheet.rerender();
-                var a = sheet.getFocusedRow().LinesData;
+                const a = "Data";
                 document.querySelector("#myTabs_contents-0").value = a;
             `
         });
